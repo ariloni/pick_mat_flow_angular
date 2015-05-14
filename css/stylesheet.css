@@ -1,0 +1,23 @@
+h1 {
+	text-align: center;
+}
+
+/** {
+	box-sizing: border-box;*/
+/*}*/
+.board {
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+	background-color: lightblue;
+	
+    
+}
+
+.box {
+	width: 150px;
+	height: 150px;
+	border: 3px solid gray;
+	display: inline-block;
+	margin: 5px;
+}
