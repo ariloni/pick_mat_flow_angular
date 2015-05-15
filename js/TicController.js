@@ -13,6 +13,7 @@ angular
     	self.turn = false;
     	self.getWinner = getWinner
     	self.clearBoard = clearBoard;
+    	self.gameOver = false;
 
     	function getGrid(){
     	var ref = new Firebase("https://tictactoe5000.firebaseio.com/grid");
@@ -45,9 +46,10 @@ angular
 		       || ((self.grid[0].XIsHere === true) && (self.grid[4].XIsHere === true) && (self.grid[8].XIsHere === true)) 
 		       || ((self.grid[2].XIsHere === true) && (self.grid[4].XIsHere === true) && (self.grid[6].XIsHere === true))) 
 		    {
+		        self.gameOver = true
 		        alert("x wins!");
 		        
-		        self.clearBoard();
+		        
 		      }        
 		     else if (((self.grid[0].OIsHere === true) && (self.grid[1].OIsHere === true) && (self.grid[2].OIsHere === true)) 
 		       || ((self.grid[3].OIsHere === true) && (self.grid[4].OIsHere === true) && (self.grid[5].OIsHere === true)) 
@@ -58,16 +60,22 @@ angular
 		       || ((self.grid[0].OIsHere === true) && (self.grid[4].OIsHere === true) && (self.grid[8].OIsHere === true)) 
 		       || ((self.grid[2].OIsHere === true) && (self.grid[4].OIsHere === true) && (self.grid[6].OIsHere === true))) 
 		    {
+		        self.gameOver = true
 		        alert("o wins!");
 		        
-		       self.clearBoard();
+		       
 		      }        
 		    }
   
      	
      	function boxClick(index){
+
+     		if (self.gameOver === true) {
+     			alert("Go back to the future to start new game!")
+     		} else {
      		
      		var turn = getTurn();
+
      		
      		if ((self.grid[index].XIsHere === true) || (self.grid[index].OIsHere === true)){
      			alert("Sorry, box is taken. Choose another box!");
@@ -83,7 +91,7 @@ angular
 
 			console.log(self.grid[index]);
 			self.grid.$save(self.grid[index]);
-
+			}
      	} 
 
      	function clearBoard() {
@@ -93,6 +101,8 @@ angular
                         self.grid[i].OIsHere = false;
                         self.grid.$save(self.grid[i]);
                     };
+
+            self.gameOver = false;
      	}
      		
      		
