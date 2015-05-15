@@ -27,20 +27,12 @@
 		<div class="board">
 		<div class="box" 
 			ng-repeat="box in ticCtrl.grid" 
-			ng-click="ticCtrl.boxClick($index)">
-			<!-- <div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div> -->
+			ng-click="ticCtrl.boxClick($index)"
+			ng-class="{'playX': box.XIsHere, 'playO': box.OIsHere}">
+			
 		</div>
 		</div>
 	</div>
-	<!-- Javascript-->
-<script type="text/javascript" src="js/javascript.js"></script>
+	
 </body>
 </html>

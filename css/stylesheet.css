@@ -2,9 +2,7 @@ h1 {
 	text-align: center;
 }
 
-/** {
-	box-sizing: border-box;*/
-/*}*/
+
 .board {
 	width: 500px;
 	height: 500px;
@@ -21,3 +19,14 @@ h1 {
 	display: inline-block;
 	margin: 5px;
 }
+.playX {
+   background-image: url("../x-image.png");
+   background-size: cover;
+   background-position: center ;
+   }
+
+.playO {
+   background-image: url("../o-image.png");
+   background-size: cover;
+   background-position: center ;
+   }
