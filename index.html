@@ -26,7 +26,7 @@
 
 		<div class="board">
 		<div class="box" 
-			ng-repeat="box in ticCtrl.grid" 
+			ng-repeat="box in ticCtrl.grid track by $index" 
 			ng-click="ticCtrl.boxClick($index)"
 			ng-class="{'playX': box.XIsHere, 'playO': box.OIsHere}">
 			

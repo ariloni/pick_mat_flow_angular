@@ -11,6 +11,8 @@ angular
     	self.grid = getGrid();
     	self.boxClick = boxClick;
     	self.turn = false;
+    	self.getWinner = getWinner
+    	self.clearBoard = clearBoard;
 
     	function getGrid(){
     	var ref = new Firebase("https://tictactoe5000.firebaseio.com/grid");
@@ -32,12 +34,36 @@ angular
 				}
 		}
 
-    	// self.whackMole = function(i){
-     //      if (self.holes[i].moleIsHere === true){
-     //          self.holes[i].moleIsHere = false;
-     //          console.log('whacked');
-     //          self.holes[randomHole()].moleIsHere = true;
-     //      }
+    	function getWinner() {
+    
+		    if (((self.grid[0].XIsHere === true) && (self.grid[1].XIsHere === true) && (self.grid[2].XIsHere === true)) 
+		       || ((self.grid[3].XIsHere === true) && (self.grid[4].XIsHere === true) && (self.grid[5].XIsHere === true)) 
+		       || ((self.grid[6].XIsHere === true) && (self.grid[7].XIsHere === true) && (self.grid[8].XIsHere === true))  
+		       || ((self.grid[0].XIsHere === true) && (self.grid[3].XIsHere === true) && (self.grid[6].XIsHere === true)) 
+		       || ((self.grid[1].XIsHere === true) && (self.grid[4].XIsHere === true) && (self.grid[7].XIsHere === true)) 
+		       || ((self.grid[2].XIsHere === true) && (self.grid[5].XIsHere === true) && (self.grid[8].XIsHere === true)) 
+		       || ((self.grid[0].XIsHere === true) && (self.grid[4].XIsHere === true) && (self.grid[8].XIsHere === true)) 
+		       || ((self.grid[2].XIsHere === true) && (self.grid[4].XIsHere === true) && (self.grid[6].XIsHere === true))) 
+		    {
+		        alert("x wins!");
+		        
+		        self.clearBoard();
+		      }        
+		     else if (((self.grid[0].OIsHere === true) && (self.grid[1].OIsHere === true) && (self.grid[2].OIsHere === true)) 
+		       || ((self.grid[3].OIsHere === true) && (self.grid[4].OIsHere === true) && (self.grid[5].OIsHere === true)) 
+		       || ((self.grid[6].OIsHere === true) && (self.grid[7].OIsHere === true) && (self.grid[8].OIsHere === true))  
+		       || ((self.grid[0].OIsHere === true) && (self.grid[3].OIsHere === true) && (self.grid[6].OIsHere === true)) 
+		       || ((self.grid[1].OIsHere === true) && (self.grid[4].OIsHere === true) && (self.grid[7].OIsHere === true)) 
+		       || ((self.grid[2].OIsHere === true) && (self.grid[5].OIsHere === true) && (self.grid[8].OIsHere === true)) 
+		       || ((self.grid[0].OIsHere === true) && (self.grid[4].OIsHere === true) && (self.grid[8].OIsHere === true)) 
+		       || ((self.grid[2].OIsHere === true) && (self.grid[4].OIsHere === true) && (self.grid[6].OIsHere === true))) 
+		    {
+		        alert("o wins!");
+		        
+		       self.clearBoard();
+		      }        
+		    }
+  
      	
      	function boxClick(index){
      		
@@ -48,14 +74,29 @@ angular
      		}
 
      		if (turn === "x") {
-     				self.grid[index].XIsHere = true
-     			} else { 
-     				self.grid[index].OIsHere = true
-     			}
-     		} 
-			
+				self.grid[index].XIsHere = true
+			} else { 
+				self.grid[index].OIsHere = true
+			}
 
+			self.getWinner();
+
+			console.log(self.grid[index]);
+			self.grid.$save(self.grid[index]);
+
+     	} 
+
+     	function clearBoard() {
+
+     		for (var i = 0; i < self.grid.length; i++) {
+                        self.grid[i].XIsHere = false;
+                        self.grid[i].OIsHere = false;
+                        self.grid.$save(self.grid[i]);
+                    };
      	}
+     		
+     		
+	}
 
     	
     
