@@ -23,6 +23,13 @@
 	<div class="wrapper" ng-controller="TicController as ticCtrl">
 		
 		<h1>Pick Mat Flow</h1>
+		<h2>{{ ticCtrl.gameData[0].gameStatus }}</h2>
+		<h3>Player 1: {{ticCtrl.gameData[0].p1win}} wins</h3>
+		<h3>Player 2: {{ ticCtrl.gameData[0].p2win }} wins</h3>
+		<h3>Ties: {{ ticCtrl.gameData[0].ties }} </h3>
+		
+		
+		<button ng-click="ticCtrl.newGame()">New Game</button>
 
 		<div class="board">
 		<div class="box" 
@@ -31,7 +38,7 @@
 			ng-class="{'playX': box.XIsHere, 'playO': box.OIsHere}">
 			
 		</div>
-		<button ng-click="ticCtrl.clearBoard()">Back to the Future</button>
+		<button ng-click="ticCtrl.clearBoard()">Reset Board</button>
 		</div>
 	</div>
 	

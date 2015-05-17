@@ -4,21 +4,30 @@ angular
 
     TicController.$inject = ['$firebaseArray']
 
-    function TicController($firebaseArray){
+    function TicController($firebaseArray) {
 
     	var self = this;
 
     	self.grid = getGrid();
+    	self.gameData = getGameData();
     	self.boxClick = boxClick;
     	self.turn = false;
-    	self.getWinner = getWinner
+    	self.getWinner = getWinner;
+    	self.getTie = getTie;
     	self.clearBoard = clearBoard;
     	self.gameOver = false;
+    	self.newGame = newGame;
 
     	function getGrid(){
     	var ref = new Firebase("https://tictactoe5000.firebaseio.com/grid");
 		var grid = $firebaseArray(ref);
 		return grid;
+    	};
+
+    	function getGameData(){
+    	var ref = new Firebase("https://tictactoe5000.firebaseio.com/gameData");
+		var gameData = $firebaseArray(ref);
+		return gameData;
     	};
 
     	self.move = 0;
@@ -33,7 +42,7 @@ angular
 				} else {
 					return "x";
 				}
-		}
+						}
 
     	function getWinner() {
     
@@ -48,6 +57,10 @@ angular
 		    {
 		        self.gameOver = true
 		        alert("x wins!");
+		        self.gameData[0].gameStatus = "x wins! Click reset button to play again.";
+		        self.gameData[0].p1win++;
+		        self.gameData.$save(self.gameData[0]);
+		        
 		        
 		        
 		      }        
@@ -62,16 +75,33 @@ angular
 		    {
 		        self.gameOver = true
 		        alert("o wins!");
+		        self.gameData[0].gameStatus = "o wins! Click reset button to play again.";
+		        self.gameData[0].p2win++;
+		        self.gameData.$save(self.gameData[0]);
+		        
 		        
 		       
-		      }        
-		    }
+		      } 
+					      
+		    	
+		} 
+		
+		function getTie() {
+			if (self.gameData[0].turns === 8) {
+		  		alert("tie");
+				self.gameData[0].gameStatus  = "Tie! Click reset button to play again.";
+				self.gameData[0].ties++;
+				self.gameData.$save(self.gameData[0]);
+				
+				
+				}
+		}   
   
      	
      	function boxClick(index){
 
      		if (self.gameOver === true) {
-     			alert("Go back to the future to start new game!")
+     			alert("Press reset to start new game!")
      		} else {
      		
      		var turn = getTurn();
@@ -81,13 +111,17 @@ angular
      			alert("Sorry, box is taken. Choose another box!");
      		}
 
-     		if (turn === "x") {
+     		else if (turn === "x") {
 				self.grid[index].XIsHere = true
 			} else { 
 				self.grid[index].OIsHere = true
 			}
 
 			self.getWinner();
+			self.getTie();
+
+			self.gameData[0].turns++;
+
 
 			console.log(self.grid[index]);
 			self.grid.$save(self.grid[index]);
@@ -103,9 +137,21 @@ angular
                     };
 
             self.gameOver = false;
+            self.gameData[0].gameStatus = "Let's get ready to rumble!";
+            self.gameData[0].turns = 0;
+            self.gameData.$save(self.gameData[0]);
      	}
      		
      		
+	
+		function newGame() {
+			self.gameData[0].p1win = 0;
+			self.gameData[0].p2win = 0;
+			self.gameData[0].ties = 0;
+			self.gameData.$save(self.gameData[0]);
+			
+			self.clearBoard();
+		}
 	}
 
     	
