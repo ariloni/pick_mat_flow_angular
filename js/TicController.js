@@ -56,8 +56,8 @@ angular
 		       || ((self.grid[2].XIsHere === true) && (self.grid[4].XIsHere === true) && (self.grid[6].XIsHere === true))) 
 		    {
 		        self.gameOver = true
-		        alert("x wins!");
-		        self.gameData[0].gameStatus = "x wins! Click reset button to play again.";
+		        
+		        self.gameData[0].gameStatus = "Yogi 1 wins! Practice Non-Attachment to play again.";
 		        self.gameData[0].p1win++;
 		        self.gameData.$save(self.gameData[0]);
 		        
@@ -74,8 +74,8 @@ angular
 		       || ((self.grid[2].OIsHere === true) && (self.grid[4].OIsHere === true) && (self.grid[6].OIsHere === true))) 
 		    {
 		        self.gameOver = true
-		        alert("o wins!");
-		        self.gameData[0].gameStatus = "o wins! Click reset button to play again.";
+		        
+		        self.gameData[0].gameStatus = "Yogi 2! Yogi 1 wins! Practice Non-Attachment to play again.";
 		        self.gameData[0].p2win++;
 		        self.gameData.$save(self.gameData[0]);
 		        
@@ -88,8 +88,8 @@ angular
 		
 		function getTie() {
 			if (self.gameData[0].turns === 8) {
-		  		alert("tie");
-				self.gameData[0].gameStatus  = "Tie! Click reset button to play again.";
+		  		
+				self.gameData[0].gameStatus  = "Peace wins! Practice Non-Attachment to play again.";
 				self.gameData[0].ties++;
 				self.gameData.$save(self.gameData[0]);
 				
@@ -101,7 +101,7 @@ angular
      	function boxClick(index){
 
      		if (self.gameOver === true) {
-     			alert("Press reset to start new game!")
+     			
      		} else {
      		
      		var turn = getTurn();
@@ -112,9 +112,9 @@ angular
      		}
 
      		else if (turn === "x") {
-				self.grid[index].XIsHere = true
+				self.grid[index].XIsHere = true;
 			} else { 
-				self.grid[index].OIsHere = true
+				self.grid[index].OIsHere = true;
 			}
 
 			self.getWinner();
@@ -137,7 +137,7 @@ angular
                     };
 
             self.gameOver = false;
-            self.gameData[0].gameStatus = "Let's get ready to rumble!";
+            self.gameData[0].gameStatus = "Let the peace Begin!";
             self.gameData[0].turns = 0;
             self.gameData.$save(self.gameData[0]);
      	}

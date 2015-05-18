@@ -1,32 +1,84 @@
+
+
 h1 {
-	text-align: center;
+	text-align: right;
+	color: #FFD700;
+	font-family: papyrus;
+	font-size: 50px;
+	margin: 100px 0px 0px 0px;
+}
+.game-status {
+	color: #FFD700;
+	font-family: papyrus;
+}
+
+#body {
+	background-image: url("../Buddha-fosfor-wallpaper.jpg");
+	top: -100px;
+	position: absolute;
+	background-color: rgb(0, 40, 42);
+	
+	background-repeat: no-repeat;
+	
 }
 
 
 .board {
 	width: 500px;
 	height: 500px;
-	margin: 0 auto;
-	background-color: lightblue;
+	margin: 0px 0px;
+	float: left;
+	background-image: url("../Buddhasunset.GIF");
+	background-size: cover;
 	
-    
+
 }
 
+.gameinfo{
+	float: right;
+	color: #FFD700;
+	font-family: papyrus;
+}
 .box {
 	width: 150px;
 	height: 150px;
 	border: 3px solid gray;
+	border-color: #FFD700;
 	display: inline-block;
 	margin: 5px;
 }
 .playX {
-   background-image: url("../x-image.png");
+   background-image: url("../worldpeace.jpg");
    background-size: cover;
    background-position: center ;
    }
 
 .playO {
-   background-image: url("../o-image.png");
+   background-image: url("../yin-yang-earth.jpg");
    background-size: cover;
    background-position: center ;
    }
+
+.btn {
+  background: #9932CC;
+  /*background-image: linear-gradient(to bottom, #9932CC, #BA55D3);*/
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 127px;
+  font-family: papyrus;
+  color: #FFD700;;
+  font-size: 14px;
+  padding: 8px 10px 3px 8px;;
+  margin: 5px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background:#BA55D3;
+  background-image: -webkit-linear-gradient(top, #BA55D3, #9932CC);
+  background-image: -moz-linear-gradient(top, #BA55D3, #9932CC);
+  background-image: -ms-linear-gradient(top, #BA55D3, #9932CC);
+  background-image: -o-linear-gradient(top, #BA55D3, #9932CC);
+  background-image: linear-gradient(to bottom, #BA55D3, #9932CC);
+  text-decoration: none;
+}
